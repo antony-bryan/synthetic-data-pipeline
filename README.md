@@ -134,26 +134,13 @@ print(ds["train"][0])
 git clone https://github.com/antony-bryan/synthetic-data-pipeline
 cd synthetic-data-pipeline
 pip install -r requirements.txt
-
-export OPENAI_API_KEY=sk-...
-export HF_TOKEN=hf_...
-
-python scripts/run_generate.py --n 1200 --concurrent 10 --out data/raw/raw_generated.csv
-python scripts/run_filter.py --input data/raw/raw_generated.csv --output data/filtered/filtered_dataset.csv
-python scripts/run_publish.py --input data/filtered/filtered_dataset.csv --repo YOUR_HF_USERNAME/synthetic-preference-data
 ```
 
-**Environment:**
-- Python 3.12, Kaggle CPU notebook (no GPU required)
-- `openai>=1.50.0`, `datasketch==1.6.5`, `pydantic>=2.7.0`, `datasets>=2.18.0`
-- See `requirements.txt` for full pinned stack
+Open `notebooks/synthetic_data_pipeline.ipynb` in Kaggle (CPU, no GPU required):
 
----
+1. Add `OPENAI_API_KEY` and `HF_TOKEN` to Kaggle Secrets
+2. Run all cells in order — Day 7 (generation) → Day 8 (filtering) → Day 9 (publish)
+3. Expected runtime: ~10 minutes (API calls) + ~5 minutes (filtering + push)
+4. Expected cost: ~$0.20 USD in OpenAI API spend
 
-## Resume Bullet
-
-> "Built end-to-end synthetic preference data pipeline using OpenAI gpt-4o-mini with Structured Outputs (Pydantic schema); async generation with semaphore-based rate limiting, chosen/rejected distinctness filtering, exact MD5 deduplication (42.6% removal — LLM converges on identical prompts), and MinHash LSH near-deduplication (char 5-gram shingles, Jaccard threshold 0.8); yielded 554 clean examples from 1,200 generated (46.2% yield) at $0.198 total cost (~$3.57/10K examples); published to HuggingFace Hub with full dataset card."
-
----
-
-*Part of a 3-project portfolio for the Anthropic Fellows Program (ML Systems & Performance). April 2026.*
+**Environment:** Python 3.12, Kaggle CPU notebook, no GPU required.
