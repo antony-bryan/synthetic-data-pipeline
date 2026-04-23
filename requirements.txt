@@ -1,0 +1,12 @@
+openai>=1.50.0
+datasketch==1.6.5
+jsonschema==4.23.0
+pydantic>=2.7.0
+datasets>=2.18.0
+huggingface_hub>=0.23.0
+nest_asyncio==1.6.0
+python-dotenv>=1.0.0
+pandas
+tqdm
+matplotlib
+tabulate
