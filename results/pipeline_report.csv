@@ -1,0 +1,7 @@
+stage,n_in,n_out,removed,removed_pct,note
+0. raw_generated,1200,1200,0,0.0,
+1. length filter,1200,1200,0,0.0,"prompt≥20, chosen/rejected≥60, ratio≤3.0×"
+2. chosen/rejected distinct,1200,1053,147,12.25,"0.10 ≤ word-Jaccard(chosen, rejected) ≤ 0.85"
+3. exact dedup,1053,604,449,42.64,MD5(prompt) unique
+4. near dedup (MinHash),604,554,50,8.28,"char-5-gram, threshold=0.8, num_perm=128"
+5. safety blocklist,554,554,0,0.0,7 keywords
